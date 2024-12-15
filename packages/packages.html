@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyage Vibe - Packages</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header id="header">
+        <a href="../Home_page/index.html"><img src="../web_pics/logo.jpg" alt="Voyage Vibe Logo" class="logo"></a>
+        <h1>Voyage Vibe</h1>
+        
+        <nav>
+            <ul>
+                <li><a href="../Home_page/index.html">Home</a></li>
+                <li><a href="../Destinations/destinations.html">Destinations</a></li>
+                <li><a href="../packages/packages.html">Packages</a></li>
+                <li><a href="../about/about.html">About Us</a></li>
+                <li><a href="../contact/contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="package">
+        <section class="pack-sect">
+            <h2>Travel Packages</h2>
+            <br>
+            <br>
+            <form id="travel-form" class="travel-form">
+                <label for="place">Select a destination:</label>
+                <select id="place" name="place" required>
+                    <option value="select-Value">--Select--</option>
+                    <option value="paris">Paris</option>
+                    <option value="new_york">New York</option>
+                    <option value="tokyo">Tokyo</option>
+                </select>
+    
+                <label for="days">Number of days:</label>
+                <input class="inp-pack" type="number" placeholder="No. of days" id="days" name="days" min="1" max="7" required>
+    
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+
+            <div id="package-result"></div> <!-- To display results here -->
+        </section>
+    </main>
+    
+    <script src="../packages/packages.js"></script> <!-- Link to the JavaScript file -->
+</body>
+</html>
