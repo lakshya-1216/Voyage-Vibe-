@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose=require('mongoose');
@@ -9,7 +10,8 @@ app.set("views",path.join(__dirname,"views"));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended:true}));
 const session=require("express-session")
-const MONGO_URL="mongodb://127.0.0.1:27017/BMSCE";
+const MongoStore = require('connect-mongo');
+const dbUrl=process.env.Atlas_db;
 // Error Handling
 main().then(()=>{
     console.log("Connected to DB");
@@ -17,10 +19,23 @@ main().then(()=>{
     console.log(err)});
 // main fxn to connect to DB
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
 }
+
+const store = MongoStore.create({
+    mongoUrl : process.env.Atlas_db,
+    crypto : {
+        secret : process.env.variable, 
+    },
+    touchAfter : 24 * 60 * 60,
+});
+
+store.on("error",()=>{
+    console.log("ERROR in MONGODB",err);
+})
 const sessionOptions={
-    secret:"BMSCE",
+    store,
+    secret:process.env.variable,
     resave:false,
     saveUninitialized: true,
     Cookie:{
@@ -30,6 +45,9 @@ const sessionOptions={
         
     },
 };
+
+
+
 app.use(session(sessionOptions));
 
 const passport=require("passport");
