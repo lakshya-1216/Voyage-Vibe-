@@ -1,0 +1,72 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="../reviews.css">
+</head>
+<body>
+    <header>
+        <h1>Reviews</h1>
+        <a href="/" class="back-button">Back to Home</a>
+    </header>
+    
+    <section id="reviews-page">
+        <div class="reviews-container">
+            <h2>User Reviews</h2>
+            <div id="reviews-list">
+                <!-- Existing reviews will appear here -->
+                <!-- <div class="review">
+                    <p><strong>John Doe</strong> (5 stars): Amazing experience in Paris! Would highly recommend.</p>
+                </div>
+                <div class="review">
+                    <p><strong>Jane Smith</strong> (4 stars): New York was fantastic, but the traffic was crazy.</p>
+                </div>
+                <div class="review">
+                    <p><strong>Emily Johnson</strong> (5 stars): Tokyo was a perfect blend of tradition and modernity.</p>
+                </div> -->
+                <div class="rvs">
+                    <% if (allreview && allreview.length > 0) { %>
+                      <% allreview.forEach(function(review) { %>
+                        <div class="review">
+                          <p><strong><%= review.username %>:</strong></p>
+                          <p><%= review.description %></p>
+                          <p>Rating: <%= review.rating %>/5</p>
+                        </div>
+                        <form method="POST" action="/reviews/<%=review._id%>?_method=Delete">
+                            <button type="button submit " class="btn btn-outline-dark">Delete</button>
+                        </form>
+                      <% }); %>
+                    <% } 
+                    else { %>
+                        <p>No reviews available.</p>
+                      <% } %>
+                  </div>
+                  
+            </div>
+            
+            <h3>Add Your Review</h3>
+            <form id="review-form" method="post" accept="/reviews">
+                <label for="username">Your Name:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your name">
+                
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating" required>
+                    <option value="0">--select--</option>
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
+                
+                <label for="review-message">Your Review:</label>
+                <textarea id="review-message" name="description" required placeholder="Write your review here"></textarea>
+                
+                <button type="submit" class="submit-button">Submit Review</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- <script src="../js/reviews.js"></script> -->
+</body>
+

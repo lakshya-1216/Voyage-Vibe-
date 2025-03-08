@@ -20,7 +20,7 @@ document.getElementById("loginBtn").addEventListener("click", function () {
     .then(data => {
         if (data.status === "success") {
             alert(`Welcome back, ${username}!`);
-            window.location.href = "../index.html";  // Redirect to home page
+            window.location.href = "/";  // Redirect to home page
         } else {
             alert(data.message);  // Show the error message from the backend
         }
@@ -34,5 +34,5 @@ document.getElementById("loginBtn").addEventListener("click", function () {
 // Signup Button Functionality
 document.getElementById("signupBtn").addEventListener("click", function () {
     // Redirect to the Signup Page
-    window.location.href = "../login/signup/signUp.html";
+    window.location.href = "/signup";
 });
