@@ -12,6 +12,9 @@ app.use(express.urlencoded({extended:true}));
 const session=require("express-session")
 const MongoStore = require('connect-mongo');
 const dbUrl=process.env.Atlas_db;
+
+console.log("MongoDB URL:", dbUrl);
+
 // Error Handling
 main().then(()=>{
     console.log("Connected to DB");
